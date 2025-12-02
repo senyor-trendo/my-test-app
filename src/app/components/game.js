@@ -6,21 +6,44 @@ import Player from "./Player";
 export default function Game() {
 	const [moves, setMoves] = useState(Array(9).fill(null));
 	const [turn, setTurn] = useState(0); //Player turn
+	const [winner, setWinner] = useState(null); //Player turn
 	const symbols = ['X', 'O'];
 
 	function handleClick(i){
-		console.log(i);
 		if(!moves[i]){
 			const m = [...moves];
 			m[i] = turn === 0 ? 'X': 'O';
+
+			const w = checkWinner(m);
+			if (w) {
+				setWinner(w);
+				setMoves(m);
+				return;
+			}
+			
 			setMoves(m);
-			setTurn((t) => (t+1)%2 )
+			setTurn((t) => (t+1)%2)
 		}
+	}
+	function checkWinner(board){
+		const lines = [
+			[0, 1, 2], [3, 4, 5], [6, 7, 8],
+			[0, 3, 6], [1, 4, 7], [2, 5, 8],
+			[0, 4, 8], [2, 4, 6]
+		];
+
+		for (const [a, b, c] of lines) {
+			if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+				return board[a];
+			}
+		}
+
+		return null;
 	}
 
 	return (
 		<section className="game">
-			<h1>3 en raya</h1>
+			<h1>3 en raya</h1> [{winner}]
 			<ul className="players">
 				<li className="player1"><Player name="Player 1" current={turn === 0} symbol={symbols[0]}></Player></li>
 				<li className="player2"><Player name="Player 2" current={turn === 1} symbol={symbols[1]}></Player></li>
