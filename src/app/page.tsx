@@ -1,10 +1,5 @@
-import Board from "./components/board";
-import styles from "./page.module.css";
+import Game from "./components/Game";
 
 export default function Home() {
-	return (
-		<div className={styles.boardContainer}>
-			<Board></Board>
-		</div>
-	);
+	return (<Game></Game>);
 }

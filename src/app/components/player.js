@@ -1,6 +1,6 @@
-export default function Player({idx, name}) {
+export default function Player({name, symbol, current}) {
 	
 	return (
-		<h2>Player {idx}: {name}</h2>
+		<h2 className={current? 'player--current' : 'player'}>{name} - {symbol}</h2>
 	);
 }

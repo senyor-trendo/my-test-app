@@ -1,13 +1,15 @@
 'use client';
 import { useState } from "react";
-import Cell from "./cell";
-import Player from "./player";
+import Board from "./Board";
+import Player from "./Player";
 
-export default function Board({onMove}) {
+export default function Game() {
 	const [moves, setMoves] = useState(Array(9).fill(null));
 	const [turn, setTurn] = useState(0); //Player turn
+	const symbols = ['X', 'O'];
 
 	function handleClick(i){
+		console.log(i);
 		if(!moves[i]){
 			const m = [...moves];
 			m[i] = turn === 0 ? 'X': 'O';
@@ -17,13 +19,14 @@ export default function Board({onMove}) {
 	}
 
 	return (
-		<div class="game">
-			<Player idx={turn} name="UOLA"></Player>
-			<div className="board">
-				{moves.map((value, index) => (
-					<Cell key={index} tag={value} cellClick={() => handleClick(index)} />
-				))}
-			</div>
-		</div>
+		<section className="game">
+			<h1>3 en raya</h1>
+			<ul className="players">
+				<li className="player1"><Player name="Player 1" current={turn === 0} symbol={symbols[0]}></Player></li>
+				<li className="player2"><Player name="Player 2" current={turn === 1} symbol={symbols[1]}></Player></li>
+			</ul>
+			<Board moves={moves} onMove={handleClick} player={turn}/>
+			<dialog>Hola</dialog>
+		</section>
 	);
 }
