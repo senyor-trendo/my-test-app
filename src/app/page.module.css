@@ -1,0 +1,38 @@
+.page {
+  --background: #fafafa;
+  --foreground: #fff;
+
+  --text-primary: #000;
+  --text-secondary: #666;
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+  --button-secondary-border: #ebebeb;
+
+  --board-size: 640px;
+}
+.boardContainer{
+	display: grid;
+    justify-content: center; /* Centers grid horizontally */
+    align-content: center;   /* Centers grid vertically (if height is set) */
+}
+.board{
+	width: 480px;
+	height: 480px;
+	display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr); /* Fixed row height */
+    gap: 15px;
+    padding: 20px;
+}
+.board-cell{
+	border: 4px solid #999;
+	background-color: rgba(255, 255, 255, 1);
+
+	color: #000;
+	cursor: pointer;
+	font-size: 72px;
+}
+.board-cell:hover{
+	opacity: 0.7;
+}
