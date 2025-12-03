@@ -1,9 +1,11 @@
 'use client';
 import { useState } from "react";
-import Board from "./Board";
-import Player from "./Player";
+import Board from "@/components/board";
+import Player from "@/components/player";
+import { usePopover } from '@/providers/popoverProvider';
 
 export default function Game() {
+	//const { showPopover } = usePopover();
 	const [moves, setMoves] = useState(Array(9).fill(null));
 	const [turn, setTurn] = useState(0); //Player turn
 	const [winner, setWinner] = useState(null); //Player turn
@@ -18,6 +20,12 @@ export default function Game() {
 			if (w) {
 				setWinner(w);
 				setMoves(m);
+				// showPopover(
+				// 	'Felicidades',
+				// 	`Ha ganado`,
+				// 	'success',
+				// 	{ top: 100, left: 200 } // Position where to show
+				// );
 				return;
 			}
 			

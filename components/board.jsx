@@ -1,4 +1,4 @@
-import Cell from "./Cell";
+import Cell from "@/components/cell";
 
 export default function Board({moves, player, onMove}) {
 	function handleClick(i){
