@@ -5,11 +5,22 @@ import Player from "@/components/player/player";
 import { useModal } from '@/providers/modalProvider';
 import classes from './game.module.css';
 
+interface Player {
+	name: string;
+	symbol: string;
+	wins: number;
+}
+
+interface Players {
+	0: Player;
+	1: Player;
+}
+
 export default function Game() {
 	const { openModal } = useModal();
 	const [moves, setMoves] = useState(Array(9).fill(null));
-	const [turn, setTurn] = useState(0);
-	const [players, setPlayers] = useState({
+	const [turn, setTurn] = useState<0 | 1>(0);
+	const [players, setPlayers] = useState <Players>({
 		0: {
 			name: 'Player 1',
 			symbol: 'X',
@@ -22,14 +33,14 @@ export default function Game() {
 		}
 	});
 
-	function handleClick(i) {
+	function handleClick(i: number) {
 		if (!moves[i]) {
 			const currentMoves = [...moves];
 			currentMoves[i] = players[turn].symbol;
 
 			const w = checkWinner(currentMoves);
 			if (w) {
-				const currentPlayers = {...players};
+				const currentPlayers = { ...players };
 				currentPlayers[turn].wins++;
 				setPlayers(currentPlayers)
 				setMoves(currentMoves);
@@ -52,10 +63,10 @@ export default function Game() {
 			}
 
 			setMoves(currentMoves);
-			setTurn((t) => (t + 1) % 2)
+			setTurn(t => ((t + 1) % 2) as 0 | 1)
 		}
 	}
-	function checkWinner(board) {
+	function checkWinner(board: number[]) {
 		const lines = [
 			[0, 1, 2], [3, 4, 5], [6, 7, 8],
 			[0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -81,14 +92,13 @@ export default function Game() {
 				<h1>Tic-tac-toe</h1>
 				<button onClick={resetGame}>Restart</button>
 			</div>
-			
+
 			<ul className={classes['players']}>
 				<li className={classes['player1']}><Player name={players[0].name} current={turn === 0} symbol={players[0].symbol}></Player></li>
 				<li className={classes['players__score']}>{players[0].wins} - {players[1].wins}</li>
 				<li className={classes['player2']}><Player name={players[1].name} current={turn === 1} symbol={players[1].symbol}></Player></li>
 			</ul>
 			<Board moves={moves} onMove={handleClick} player={turn} />
-			<dialog>Hola</dialog>
 		</section>
 	);
 }
