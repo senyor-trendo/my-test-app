@@ -24,14 +24,21 @@
 }
 .board__cell--blocked:hover{
 	opacity: 1;
+	box-shadow: none;
 }
 .board__cell--hilite{
+	opacity: 1;
+	cursor: not-allowed;
+
 	border-color: black;
 	box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.3);
 }
+.board__cell--hilite:hover{
+	opacity: 1;
+}
 .bg--player1{
-	background-color: var(--color-player1)
+	background-color: var(--color-player1);
 }
 .bg--player2{
-	background-color: var(--color-player2)
+	background-color: var(--color-player2);
 }

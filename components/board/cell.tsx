@@ -8,6 +8,6 @@ interface CellProps {
 
 export default function Cell({ tag, hilite, cellClick }: CellProps) {
 	return (
-		<button className={`${classes['board__cell']} ${tag ? classes['board__cell--blocked'] : ''} ${hilite ? classes['board__cell--hilite'] : ''}`} onClick={cellClick}>{tag}</button>
+		<button className={`${classes['board__cell']} ${hilite ? classes['board__cell--hilite'] : (tag ? classes['board__cell--blocked'] : '')}`} onClick={cellClick}>{tag}</button>
 	)
 }
