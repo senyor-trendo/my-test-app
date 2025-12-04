@@ -1,0 +1,48 @@
+.game{
+	width: var(--board-size);
+	display: flex;
+	left: 0;
+	right: 0;
+	flex-wrap: wrap;
+
+	margin: auto;
+	padding: 16px;
+	background-color: #666;
+	justify-content: center;
+}
+.players{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+
+	margin: 0;
+	padding: 0 0 16px;
+}
+.players__score{
+	font-size: 24px;
+	font-weight: bold;
+}
+.players > li{
+	position: relative;
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+.player1::after,
+.player2::after{
+	content: '';
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+
+	border-radius: 12px;
+
+	background-color: var(--color-player1);
+}
+.player2::after{
+	background-color: var(--color-player2);
+}

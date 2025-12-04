@@ -1,0 +1,32 @@
+.board{
+	width: var(--board-size);
+	height: var(--board-size);
+	display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr); /* Fixed row height */
+    gap: 15px;
+    padding: 20px;
+}
+.board__cell{
+	border: 4px solid #999;
+	background-color: rgba(255, 255, 255, 1);
+
+	color: #000;
+	cursor: pointer;
+	font-size: 72px;
+}
+.board__cell:hover{
+	opacity: 0.7;
+}
+.board__cell--blocked{
+	cursor: not-allowed;
+}
+.board__cell--blocked:hover{
+	opacity: 1;
+}
+.bg--player1{
+	background-color: var(--color-player1)
+}
+.bg--player2{
+	background-color: var(--color-player2)
+}
