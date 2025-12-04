@@ -1,5 +1,5 @@
 .game{
-	width: var(--board-size);
+	max-width: var(--board-size);
 	display: flex;
 	left: 0;
 	right: 0;
@@ -13,8 +13,10 @@
 .players{
 	width: 100%;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	list-style: none;
+	gap: 12px;
 
 	margin: 0;
 	padding: 0 0 16px;
