@@ -40,3 +40,6 @@ a {
 h1{
 	margin-bottom: 16px;
 }
+button{
+	cursor: pointer;
+}

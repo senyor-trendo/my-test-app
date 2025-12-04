@@ -18,6 +18,7 @@ interface Players {
 
 export default function Game() {
 	const { openModal } = useModal();
+	const [blocked, setBlocked] = useState(false);
 	const [moves, setMoves] = useState(Array(9).fill(null));
 	const [turn, setTurn] = useState<0 | 1>(0);
 	const [winnerMove, setWinnerMove] = useState<number[]>([]);
@@ -51,16 +52,18 @@ export default function Game() {
 					</div>
 				);
 				setWinnerMove(winnerCells);
+				setBlocked(true);
 				//resetGame();
 				return;
 			}
 			else if (!currentMoves.some(m => m === null)) {
+				setMoves(currentMoves);
 				openModal(
 					<div>
 						<h2>It's a draw!</h2>
 					</div>
 				);
-				resetGame();
+				setBlocked(true);
 				return;
 			}
 
@@ -87,6 +90,7 @@ export default function Game() {
 		setMoves(Array(9).fill(null));
 		setTurn(0);
 		setWinnerMove([]);
+		setBlocked(false);
 	}
 
 	return (
@@ -101,7 +105,7 @@ export default function Game() {
 				<li className={classes['players__score']}>{players[0].wins} - {players[1].wins}</li>
 				<li className={classes['player2']}><Player name={players[1].name} current={turn === 1} symbol={players[1].symbol}></Player></li>
 			</ul>
-			<Board moves={moves} onMove={handleClick} hilite={winnerMove} player={turn} />
+			<Board moves={moves} onMove={handleClick} hilite={winnerMove} player={turn} block={blocked} />
 		</section>
 	);
 }

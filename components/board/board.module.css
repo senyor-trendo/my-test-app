@@ -5,7 +5,20 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr); /* Fixed row height */
     gap: 15px;
+	position: relative;
+
     padding: 20px;
+}
+.board--blocked::after{
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+
+	background-color: rgba(255, 255, 255, 0.1);
 }
 .board__cell{
 	border: 4px solid #eee;
